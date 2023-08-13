@@ -1,0 +1,36 @@
+<button (click)="gotoHome()" type="button" class="btn btn-outline-secondary mb-4">Back Home</button>
+<div class="container-fluid shadow-sm p-3 mb-5 bg-body-tertiary rounded">
+  <div class="row">
+    <div class="col-4">
+      <div class="card" style="width: 18rem;">
+        <img [src]="cryptoData?.image?.large" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h2 class="card-title">{{cryptoData?.name}}</h2>
+          <p class="card-text" [innerHtml]="cryptoData?.description?.en.split('. ')[0]"></p>
+          <div class="card" >
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Rank: {{cryptoData?.market_cap_rank}}
+              </li>
+              <li class="list-group-item">
+                Current Price:{{cryptoData?.market_data.current_price.inr | currency: currency}}
+              </li>
+              <li class="list-group-item">Market Cap: {{cryptoData?.market_data.market_cap.inr | currency:currency}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <canvas style="width: 300px;" baseChart [data]="lineChartData" [options]="lineChartOptions" [type]="lineChartType"></canvas>
+      <div class="mt-4">
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+          <button (click)="getCryptoGraphData(1)" type="button" class="btn btn-danger">24 hours</button>
+          <button (click)="getCryptoGraphData(30)" type="button" class="btn btn-warning">30 days</button>
+          <button (click)="getCryptoGraphData(90)" type="button" class="btn btn-success">90 days</button>
+          <button (click)="getCryptoGraphData(365)" type="button" class="btn btn-info">1 year</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
